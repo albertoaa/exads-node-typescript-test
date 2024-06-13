@@ -36,7 +36,12 @@
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@apollo/server": "^4.10.4",
     "@aws-sdk/client-dynamodb": "^3.596.0",
+    "aws-sdk": "^2.1641.0",
+    "graphql": "^16.8.2",
+    "graphql-tag": "^2.12.6",
+    "reflect-metadata": "^0.2.2",
     "tslib": "~2.6"
   },
   "volta": {

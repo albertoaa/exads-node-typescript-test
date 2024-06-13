@@ -1,0 +1,85 @@
+type WebPageMetadata {
+  URL: String!
+  CrawlDate: String!
+  PageTitle: String
+  WordCount: Int
+  ContentType: String
+  MetaDescription: String
+}
+
+type Query {
+  getWebPageMetadataByUrl(URL: String!): [WebPageMetadata]
+  getWebPageMetadataByDateRange(startDate: String!, endDate: String!): [WebPageMetadata]
+  getWebPageMetadataByTitle(URL: String!, PageTitle: String!): [WebPageMetadata]
+}
+
+type Mutation {
+  addWebPageMetadata(
+    URL: String!,
+    CrawlDate: String!,
+    PageTitle: String,
+    WordCount: Int,
+    ContentType: String,
+    MetaDescription: String
+  ): WebPageMetadata
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+
+// Example Queries and Mutations
+
+mutation {
+  addWebPageMetadata(
+    URL: "https://example.com",
+    CrawlDate: "2024-06-13T10:00:00Z",
+    PageTitle: "Example Page",
+    WordCount: 500,
+    ContentType: "text/html",
+    MetaDescription: "An example web page"
+  ) {
+    URL
+    CrawlDate
+    PageTitle
+    WordCount
+    ContentType
+    MetaDescription
+  }
+}
+
+query {
+  getWebPageMetadataByUrl(URL: "https://example.com") {
+    URL
+    CrawlDate
+    PageTitle
+    WordCount
+    ContentType
+    MetaDescription
+  }
+}
+
+query {
+  getWebPageMetadataByDateRange(startDate: "2024-06-01T00:00:00Z", endDate: "2024-06-30T23:59:59Z") {
+    URL
+    CrawlDate
+    PageTitle
+    WordCount
+    ContentType
+    MetaDescription
+  }
+}
+
+query {
+  getWebPageMetadataByTitle(URL: "https://example.com", PageTitle: "Example Page") {
+    URL
+    CrawlDate
+    PageTitle
+    WordCount
+    ContentType
+    MetaDescription
+  }
+}
+
