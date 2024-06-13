@@ -1,4 +1,8 @@
-import { DynamoDBClient, CreateTableCommand } from '@aws-sdk/client-dynamodb';
+import {
+  DynamoDBClient,
+  CreateTableCommand,
+  ScalarAttributeType,
+} from '@aws-sdk/client-dynamodb';
 
 const client = new DynamoDBClient({ region: 'us-east-1' });
 
@@ -6,13 +10,13 @@ const createTable = async () => {
   const params = {
     TableName: 'WebPageMetadata',
     KeySchema: [
-      { AttributeName: 'URL', KeyType: 'HASH' }, // Partition key
-      { AttributeName: 'CrawlDate', KeyType: 'RANGE' }, // Sort key
+      { AttributeName: 'URL', KeyType: 'HASH' as const }, // Partition key
+      { AttributeName: 'CrawlDate', KeyType: 'RANGE' as const }, // Sort key
     ],
     AttributeDefinitions: [
-      { AttributeName: 'URL', AttributeType: 'S' },
-      { AttributeName: 'CrawlDate', AttributeType: 'S' },
-      { AttributeName: 'PageTitle', AttributeType: 'S' },
+      { AttributeName: 'URL', AttributeType: ScalarAttributeType.S },
+      { AttributeName: 'CrawlDate', AttributeType: ScalarAttributeType.S },
+      { AttributeName: 'PageTitle', AttributeType: ScalarAttributeType.S },
     ],
     ProvisionedThroughput: {
       ReadCapacityUnits: 5,
